@@ -48,8 +48,8 @@ module pixelCell(){
         }*/
     }
 }
-pixelCell();
-/*
+//pixelCell();
+
 difference(){
 for(i=[0:1:width-1], j=[0:1:height-1]){
     translate([pixelSize*i, pixelSize*j, 0]){
@@ -65,4 +65,4 @@ for(i=[0:1:width-1], j=[0:1:height-1]){
 };
 translate([-ledBendspace-wallThickness/2, 0, 0])
 cube([ledBendspace, height*pixelSize+wallThickness, wallHeight]);
-}*/
+}
