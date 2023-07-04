@@ -7,7 +7,7 @@ wallHeight = 15;
 stripThickness = 0.8;
 ledCutoutWidth = 7;
 ledCutoutHeight = 9;
-ledBendspace = 2;
+ledBendspace = 4;
 
 module pixelCell(){
     // base plate
@@ -19,7 +19,7 @@ module pixelCell(){
         cube([pixelSize, wallThickness, wallHeight]);
         translate([-wallThickness/2, 0, 0]){
             difference(){
-                cube([wallThickness, pixelSize-stripThickness, wallHeight]);
+                cube([wallThickness, pixelSize-stripThickness-2.0, wallHeight]);
                 // cut out hole for bypassing led strip on the end
                 translate([0,pixelSize/2+wallThickness/2-ledCutoutWidth/2, baseThickness])
                 cube([wallThickness, ledCutoutWidth, ledCutoutHeight]);
@@ -29,27 +29,27 @@ module pixelCell(){
             
         }
         translate([pixelSize-wallThickness/2, 0, 0])
-        cube([wallThickness, pixelSize-stripThickness, wallHeight]);
+        cube([wallThickness, pixelSize-stripThickness-2.0, wallHeight]);
     }
     
     // walls to hold led in place
     translate([0, pixelSize-stripThickness-wallThickness*1.5,0]){
-        translate([wallThickness/2, 0, 0]){
-            cube([2.9, wallThickness, 5.0]);
-            translate([2.9, 0, 0]){
-                cube([2.4, wallThickness, 3]);
-            }
+        translate([wallThickness/2+2.9, 0, 0]){
+            //rotate([0,0,-135])
+            //translate([0, wallThickness, 0])
+            //cube([2.9, wallThickness, 8.0]);
+            cube([2.4, wallThickness, 4]);
         }
-        translate([pixelSize-wallThickness/2-2.9, 0, 0]){
-            cube([2.9, wallThickness, 5.0]);
+        /*translate([pixelSize-wallThickness/2-2.9, 0, 0]){
+            cube([2.9, wallThickness, 8.0]);
             translate([-2.4, 0, 0]){
-                cube([2.4, wallThickness, 3]);
+                cube([2.4, wallThickness, 4]);
             }
-        }
+        }*/
     }
 }
-//pixelCell();
-
+pixelCell();
+/*
 difference(){
 for(i=[0:1:width-1], j=[0:1:height-1]){
     translate([pixelSize*i, pixelSize*j, 0]){
@@ -65,4 +65,4 @@ for(i=[0:1:width-1], j=[0:1:height-1]){
 };
 translate([-ledBendspace-wallThickness/2, 0, 0])
 cube([ledBendspace, height*pixelSize+wallThickness, wallHeight]);
-}
+}*/
