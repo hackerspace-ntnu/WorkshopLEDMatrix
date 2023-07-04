@@ -40,12 +40,12 @@ module pixelCell(){
             //cube([2.9, wallThickness, 8.0]);
             cube([2.4, wallThickness, 4]);
         }
-        /*translate([pixelSize-wallThickness/2-2.9, 0, 0]){
-            cube([2.9, wallThickness, 8.0]);
+        translate([pixelSize-wallThickness/2-2.9, 0, 0]){
+            //cube([2.9, wallThickness, 8.0]);
             translate([-2.4, 0, 0]){
                 cube([2.4, wallThickness, 4]);
             }
-        }*/
+        }
     }
 }
 //pixelCell();
