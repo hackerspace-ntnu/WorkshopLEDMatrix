@@ -1,0 +1,49 @@
+-- IDF_TARGET not set, using default target: esp32
+-- Found Git: /usr/bin/git (found version "2.34.1") 
+-- The C compiler identification is GNU 11.2.0
+-- The CXX compiler identification is GNU 11.2.0
+-- The ASM compiler identification is GNU
+-- Found assembler: /home/joakim/.espressif/tools/xtensa-esp32-elf/esp-2022r1-11.2.0/xtensa-esp32-elf/bin/xtensa-esp32-elf-gcc
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /home/joakim/.espressif/tools/xtensa-esp32-elf/esp-2022r1-11.2.0/xtensa-esp32-elf/bin/xtensa-esp32-elf-gcc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /home/joakim/.espressif/tools/xtensa-esp32-elf/esp-2022r1-11.2.0/xtensa-esp32-elf/bin/xtensa-esp32-elf-g++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Building ESP-IDF components for target esp32
+Solving dependencies requirements
+Updating lock file at /home/joakim/code/Joakim-droid/WorkshopLEDMatrix/esp32_tcpClient/managed_components/espressif__led_strip/examples/led_strip_spi_ws2812/dependencies.lock
+Processing 2 dependencies:
+[1/2] espressif/led_strip (2.5.3)
+[2/2] idf (5.1.0)
+-- Project sdkconfig file /home/joakim/code/Joakim-droid/WorkshopLEDMatrix/esp32_tcpClient/managed_components/espressif__led_strip/examples/led_strip_spi_ws2812/sdkconfig
+-- Looking for sys/types.h
+-- Looking for sys/types.h - found
+-- Looking for stdint.h
+-- Looking for stdint.h - found
+-- Looking for stddef.h
+-- Looking for stddef.h - found
+-- Check size of time_t
+-- Check size of time_t - done
+-- Found Python3: /home/joakim/.espressif/python_env/idf5.1_py3.10_env/bin/python (found version "3.10.12") found components: Interpreter 
+-- Performing Test C_COMPILER_SUPPORTS_WFORMAT_SIGNEDNESS
+-- Performing Test C_COMPILER_SUPPORTS_WFORMAT_SIGNEDNESS - Success
+-- App "led_strip_spi_ws2812" version: c36ddd7-dirty
+-- Adding linker script /home/joakim/code/Joakim-droid/WorkshopLEDMatrix/esp32_tcpClient/managed_components/espressif__led_strip/examples/led_strip_spi_ws2812/build/esp-idf/esp_system/ld/memory.ld
+-- Adding linker script /home/joakim/esp/esp-idf/components/esp_system/ld/esp32/sections.ld.in
+-- Adding linker script /home/joakim/esp/esp-idf/components/esp_rom/esp32/ld/esp32.rom.ld
+-- Adding linker script /home/joakim/esp/esp-idf/components/esp_rom/esp32/ld/esp32.rom.api.ld
+-- Adding linker script /home/joakim/esp/esp-idf/components/esp_rom/esp32/ld/esp32.rom.libgcc.ld
+-- Adding linker script /home/joakim/esp/esp-idf/components/esp_rom/esp32/ld/esp32.rom.newlib-data.ld
+-- Adding linker script /home/joakim/esp/esp-idf/components/esp_rom/esp32/ld/esp32.rom.syscalls.ld
+-- Adding linker script /home/joakim/esp/esp-idf/components/esp_rom/esp32/ld/esp32.rom.newlib-funcs.ld
+-- Adding linker script /home/joakim/esp/esp-idf/components/soc/esp32/ld/esp32.peripherals.ld
+-- Components: app_trace app_update bootloader bootloader_support bt cmock console cxx driver efuse esp-tls esp_adc esp_app_format esp_common esp_eth esp_event esp_gdbstub esp_hid esp_http_client esp_http_server esp_https_ota esp_https_server esp_hw_support esp_lcd esp_local_ctrl esp_netif esp_phy esp_pm esp_psram esp_ringbuf esp_rom esp_system esp_timer esp_wifi espcoredump espressif__led_strip esptool_py fatfs freertos hal heap http_parser idf_test ieee802154 json log lwip main mbedtls mqtt newlib nvs_flash openthread partition_table perfmon protobuf-c protocomm pthread sdmmc soc spi_flash spiffs tcp_transport tinyusb ulp unity usb vfs wear_levelling wifi_provisioning wpa_supplicant xtensa
+-- Component paths: /home/joakim/esp/esp-idf/components/app_trace /home/joakim/esp/esp-idf/components/app_update /home/joakim/esp/esp-idf/components/bootloader /home/joakim/esp/esp-idf/components/bootloader_support /home/joakim/esp/esp-idf/components/bt /home/joakim/esp/esp-idf/components/cmock /home/joakim/esp/esp-idf/components/console /home/joakim/esp/esp-idf/components/cxx /home/joakim/esp/esp-idf/components/driver /home/joakim/esp/esp-idf/components/efuse /home/joakim/esp/esp-idf/components/esp-tls /home/joakim/esp/esp-idf/components/esp_adc /home/joakim/esp/esp-idf/components/esp_app_format /home/joakim/esp/esp-idf/components/esp_common /home/joakim/esp/esp-idf/components/esp_eth /home/joakim/esp/esp-idf/components/esp_event /home/joakim/esp/esp-idf/components/esp_gdbstub /home/joakim/esp/esp-idf/components/esp_hid /home/joakim/esp/esp-idf/components/esp_http_client /home/joakim/esp/esp-idf/components/esp_http_server /home/joakim/esp/esp-idf/components/esp_https_ota /home/joakim/esp/esp-idf/components/esp_https_server /home/joakim/esp/esp-idf/components/esp_hw_support /home/joakim/esp/esp-idf/components/esp_lcd /home/joakim/esp/esp-idf/components/esp_local_ctrl /home/joakim/esp/esp-idf/components/esp_netif /home/joakim/esp/esp-idf/components/esp_phy /home/joakim/esp/esp-idf/components/esp_pm /home/joakim/esp/esp-idf/components/esp_psram /home/joakim/esp/esp-idf/components/esp_ringbuf /home/joakim/esp/esp-idf/components/esp_rom /home/joakim/esp/esp-idf/components/esp_system /home/joakim/esp/esp-idf/components/esp_timer /home/joakim/esp/esp-idf/components/esp_wifi /home/joakim/esp/esp-idf/components/espcoredump /home/joakim/code/Joakim-droid/WorkshopLEDMatrix/esp32_tcpClient/managed_components/espressif__led_strip /home/joakim/esp/esp-idf/components/esptool_py /home/joakim/esp/esp-idf/components/fatfs /home/joakim/esp/esp-idf/components/freertos /home/joakim/esp/esp-idf/components/hal /home/joakim/esp/esp-idf/components/heap /home/joakim/esp/esp-idf/components/http_parser /home/joakim/esp/esp-idf/components/idf_test /home/joakim/esp/esp-idf/components/ieee802154 /home/joakim/esp/esp-idf/components/json /home/joakim/esp/esp-idf/components/log /home/joakim/esp/esp-idf/components/lwip /home/joakim/code/Joakim-droid/WorkshopLEDMatrix/esp32_tcpClient/managed_components/espressif__led_strip/examples/led_strip_spi_ws2812/main /home/joakim/esp/esp-idf/components/mbedtls /home/joakim/esp/esp-idf/components/mqtt /home/joakim/esp/esp-idf/components/newlib /home/joakim/esp/esp-idf/components/nvs_flash /home/joakim/esp/esp-idf/components/openthread /home/joakim/esp/esp-idf/components/partition_table /home/joakim/esp/esp-idf/components/perfmon /home/joakim/esp/esp-idf/components/protobuf-c /home/joakim/esp/esp-idf/components/protocomm /home/joakim/esp/esp-idf/components/pthread /home/joakim/esp/esp-idf/components/sdmmc /home/joakim/esp/esp-idf/components/soc /home/joakim/esp/esp-idf/components/spi_flash /home/joakim/esp/esp-idf/components/spiffs /home/joakim/esp/esp-idf/components/tcp_transport /home/joakim/esp/esp-idf/components/tinyusb /home/joakim/esp/esp-idf/components/ulp /home/joakim/esp/esp-idf/components/unity /home/joakim/esp/esp-idf/components/usb /home/joakim/esp/esp-idf/components/vfs /home/joakim/esp/esp-idf/components/wear_levelling /home/joakim/esp/esp-idf/components/wifi_provisioning /home/joakim/esp/esp-idf/components/wpa_supplicant /home/joakim/esp/esp-idf/components/xtensa
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/joakim/code/Joakim-droid/WorkshopLEDMatrix/esp32_tcpClient/managed_components/espressif__led_strip/examples/led_strip_spi_ws2812/build

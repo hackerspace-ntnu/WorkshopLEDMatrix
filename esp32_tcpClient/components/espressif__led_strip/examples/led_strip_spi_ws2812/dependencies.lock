@@ -1,0 +1,15 @@
+dependencies:
+  espressif/led_strip:
+    component_hash: null
+    source:
+      path: /home/joakim/code/Joakim-droid/WorkshopLEDMatrix/esp32_tcpClient/managed_components/espressif__led_strip
+      type: local
+    version: 2.5.3
+  idf:
+    component_hash: null
+    source:
+      type: idf
+    version: 5.1.0
+manifest_hash: c2f6d1d94a89aeeba387398b120aafa2b76c529acd962d033afce3ad9036c7ee
+target: esp32
+version: 1.0.0
