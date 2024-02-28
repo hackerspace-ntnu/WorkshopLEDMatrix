@@ -9,7 +9,6 @@
 #include "freertos/semphr.h"
 #include "freertos/timers.h"
 #include "esp_wifi.h"
-#include "esp_event_loop.h"
 #include "esp_log.h"
 #include "esp_system.h"
 #include "esp_netif.h"
@@ -24,7 +23,7 @@
 
 static const char *TAG = "esp32_server";
 
-static void wifi_init_sta() {
+void wifi_init_sta() {
     wifi_init_config_t cfg = WIFI_INIT_CONFIG_DEFAULT();
     esp_wifi_init(&cfg);
 

@@ -4,7 +4,7 @@
 #define WIFI_SSID "YourWiFiSSID"
 #define WIFI_PASS "YourWiFiPassword"
 
-static void wifi_init_sta();
+void wifi_init_sta();
 void start_server();
 
 #endif
