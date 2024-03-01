@@ -16,6 +16,7 @@
 
 #define LED_STRIP_SPI_DEFAULT_RESOLUTION (2.5 * 1000 * 1000) // 2.5MHz resolution
 #define LED_STRIP_SPI_DEFAULT_TRANS_QUEUE_SIZE 4
+#define SPI_CLK_SRC_DEFAULT SDM_CLK_SRC_DEFAULT
 
 #define SPI_BYTES_PER_COLOR_BYTE 3
 #define SPI_BITS_PER_COLOR_BYTE (SPI_BYTES_PER_COLOR_BYTE * 8)
@@ -145,6 +146,7 @@ esp_err_t led_strip_new_spi_device(const led_strip_config_t *led_config, const l
     spi_strip->spi_host = spi_config->spi_bus;
     // for backward compatibility, if the user does not set the clk_src, use the default value
     spi_clock_source_t clk_src = SPI_CLK_SRC_DEFAULT;
+    // spi_clock_source_t clk_src = SDM_CLK_SRC_DEFAULT;
     if (spi_config->clk_src) {
         clk_src = spi_config->clk_src;
     }
@@ -165,7 +167,7 @@ esp_err_t led_strip_new_spi_device(const led_strip_config_t *led_config, const l
     }
 
     spi_device_interface_config_t spi_dev_cfg = {
-        .clock_source = clk_src,
+        // .clock_source = clk_src, if clock source is not set, use SPI_CLK_SRC_DEFAULT
         .command_bits = 0,
         .address_bits = 0,
         .dummy_bits = 0,
@@ -182,8 +184,8 @@ esp_err_t led_strip_new_spi_device(const led_strip_config_t *led_config, const l
     spi_device_get_actual_freq(spi_strip->spi_device, &clock_resolution_khz);
     // TODO: ideally we should decide the SPI_BYTES_PER_COLOR_BYTE by the real clock resolution
     // But now, let's fixed the resolution, the downside is, we don't support a clock source whose frequency is not multiple of LED_STRIP_SPI_DEFAULT_RESOLUTION
-    ESP_GOTO_ON_FALSE(clock_resolution_khz == LED_STRIP_SPI_DEFAULT_RESOLUTION / 1000, ESP_ERR_NOT_SUPPORTED, err,
-                      TAG, "unsupported clock resolution:%dKHz", clock_resolution_khz);
+    // ESP_GOTO_ON_FALSE(clock_resolution_khz == LED_STRIP_SPI_DEFAULT_RESOLUTION / 1000, ESP_ERR_NOT_SUPPORTED, err,
+                    //   TAG, "unsupported clock resolution:%dKHz", clock_resolution_khz);
 
     spi_strip->bytes_per_pixel = bytes_per_pixel;
     spi_strip->strip_len = led_config->max_leds;

@@ -7,13 +7,10 @@
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #include "led_strip.h"
-// #include "led_strip_spi.h"
 #include "esp_log.h"
 #include "esp_err.h"
 #include "tcp_server.h"
 #include "config.h"
-// #include <stdlib.h>
-// #include <string.h>
 #include <sys/cdefs.h>
 #include "esp_check.h"
 #include "esp_rom_gpio.h"
@@ -35,10 +32,10 @@ led_strip_handle_t configure_led(void) {
         .flags.invert_out = false,                // whether to invert the output signal
     };
 
-    #ifdef USE_SPI
+    #if USE_SPI
         // LED strip backend configuration: SPI
         led_strip_spi_config_t spi_config = {
-            //  .clk_src = SPI_CLK_SRC_DEFAULT, // different clock source can lead to different power consumption
+            // .clk_src = SDM_CLK_SRC_DEFAULT, // different clock source can lead to different power consumption
             .clk_src = SOC_MOD_CLK_APB, // different clock source can lead to different power consumption, from clk_tree_defs SPI_CLK_SRC_DEFAULT is set to SOC_MOD_CLK_APB 
             .flags.with_dma = true,         // Using DMA can improve performance and help drive more LEDs
             .spi_bus = SPI2_HOST,           // SPI bus ID
@@ -88,9 +85,21 @@ void app_main(void)  {
     while (1) {
         if (led_on_off) {
             /* Set the LED pixel using RGB from 0 (0%) to 255 (100%) for each color */
+            // for (int i = 0; i < LED_STRIP_LED_NUMBERS; i++) {
+            //     ESP_ERROR_CHECK(led_strip_set_pixel(led_strip, i, 5, 5, 5));
+            // }
+
+             uint8_t pattern[LED_STRIP_LED_NUMBERS] = {
+                1,0,0,0,1,0,0,1,0,0,0,1,1,1,1,1,1,0,0,1,0,0,0,1,0,1,1,1,0
+                
+                };
+            // Map the pattern to the LED strip
             for (int i = 0; i < LED_STRIP_LED_NUMBERS; i++) {
-                ESP_ERROR_CHECK(led_strip_set_pixel(led_strip, i, 5, 5, 5));
+                ESP_ERROR_CHECK(led_strip_set_pixel(led_strip, i, (pattern[i]) ? 255 : 0, (pattern[i]) ? 255 : 0, (pattern[i]) ? 255 : 0));
             }
+            // led_strip_set_pixel(led_strip, 0, 255, 255, 255);
+            // led_strip_set_pixel(led_strip, 1, 255, 255, 255);
+
             /* Refresh the strip to send data */
             ESP_ERROR_CHECK(led_strip_refresh(led_strip));
             ESP_LOGI(TAG, "LED ON!");
