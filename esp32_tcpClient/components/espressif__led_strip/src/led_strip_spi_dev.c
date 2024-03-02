@@ -145,11 +145,12 @@ esp_err_t led_strip_new_spi_device(const led_strip_config_t *led_config, const l
 
     spi_strip->spi_host = spi_config->spi_bus;
     // for backward compatibility, if the user does not set the clk_src, use the default value
-    spi_clock_source_t clk_src = SPI_CLK_SRC_DEFAULT;
+    // EDIT: commented to suppress warning in build
+    // spi_clock_source_t clk_src = SPI_CLK_SRC_DEFAULT;
     // spi_clock_source_t clk_src = SDM_CLK_SRC_DEFAULT;
-    if (spi_config->clk_src) {
-        clk_src = spi_config->clk_src;
-    }
+    // if (spi_config->clk_src) {
+    //     clk_src = spi_config->clk_src;
+    // }
 
     spi_bus_config_t spi_bus_cfg = {
         .mosi_io_num = led_config->strip_gpio_num,
@@ -167,7 +168,7 @@ esp_err_t led_strip_new_spi_device(const led_strip_config_t *led_config, const l
     }
 
     spi_device_interface_config_t spi_dev_cfg = {
-        // .clock_source = clk_src, if clock source is not set, use SPI_CLK_SRC_DEFAULT
+        // .clock_source = clk_src,  if clock source is not set, use SPI_CLK_SRC_DEFAULT
         .command_bits = 0,
         .address_bits = 0,
         .dummy_bits = 0,
