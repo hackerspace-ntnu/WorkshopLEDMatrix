@@ -54,38 +54,42 @@ led_strip_handle_t configure_led(void) {
 
 void app_main(void)  {
     // Code for TCP server
-    /*
-         ESP_ERROR_CHECK(nvs_flash_init());
-        esp_netif_init();
-        esp_event_loop_create_default();
+    
+    ESP_ERROR_CHECK(nvs_flash_init());
+    esp_netif_init();
+    esp_event_loop_create_default();
 
-        wifi_init_sta();
-        start_server();
-    */
+    wifi_init_sta();
+    start_server();
+    
 
-    led_strip_handle_t led_strip = configure_led();
-    bool led_on_off = false;
+    // led_strip_handle_t led_strip = configure_led();
+    // bool led_on_off = false;
 
-    ESP_LOGI(TAG, "Start blinking LED strip");
-    while (1) {
-        if (led_on_off) {
-            uint8_t pattern[LED_STRIP_LED_NUMBERS] = {
-                1,0,0,0,1,0,0,1,0,0,0,1,1,1,1,1,1,0,0,1,0,0,0,1,0,1,1,1,0 // letter A in 5x5 matrix
-            };
-            // Map the pattern to the LED strip
-            for (int i = 0; i < LED_STRIP_LED_NUMBERS; i++) {
-                ESP_ERROR_CHECK(led_strip_set_pixel(led_strip, i, (pattern[i]) ? 255 : 0, (pattern[i]) ? 255 : 0, (pattern[i]) ? 255 : 0));
-            }
+    // ESP_LOGI(TAG, "Start blinking LED strip");
+    // while (1) {
+    //     if (led_on_off) {
+    //         uint8_t pattern[LED_STRIP_LED_NUMBERS] = {
+    //             1,0,0,0,1,0,0,1,0,0,0,1,1,1,1,1,1,0,0,1,0,0,0,1,0,1,1,1,0 // letter A in 5x5 matrix
+    //         };
+    //         // Map the pattern to the LED strip
+    //         for (int i = 0; i < LED_STRIP_LED_NUMBERS; i++) {
+    //             ESP_ERROR_CHECK(led_strip_set_pixel(led_strip, i, (pattern[i]) ? 255 : 0, (pattern[i]) ? 255 : 0, (pattern[i]) ? 255 : 0));
+    //         }
 
-            /* Refresh the strip to send data */
-            ESP_ERROR_CHECK(led_strip_refresh(led_strip));
-            ESP_LOGI(TAG, "LED ON!");
-        } else {
-            /* Set all LED off to clear all pixels */
-            ESP_ERROR_CHECK(led_strip_clear(led_strip));
-            ESP_LOGI(TAG, "LED OFF!");
-        }
-        led_on_off = !led_on_off;
-        vTaskDelay(pdMS_TO_TICKS(500));
-    }
+    //         /* Refresh the strip to send data */
+    //         ESP_ERROR_CHECK(led_strip_refresh(led_strip));
+    //         ESP_LOGI(TAG, "LED ON!");
+    //     } else {
+    //         /* Set all LED off to clear all pixels */
+    //         ESP_ERROR_CHECK(led_strip_clear(led_strip));
+    //         ESP_LOGI(TAG, "LED OFF!");
+    //     }
+    //     led_on_off = !led_on_off;
+    //     vTaskDelay(pdMS_TO_TICKS(500));
+    // }
 }
+
+
+
+

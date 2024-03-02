@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <string.h>
-#include <sys/param.h>
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #include "freertos/event_groups.h"
@@ -9,25 +8,27 @@
 #include "freertos/semphr.h"
 #include "freertos/timers.h"
 #include "esp_wifi.h"
-#include "esp_log.h"
-#include "esp_system.h"
-#include "esp_netif.h"
 #include "esp_event.h"
+#include "esp_log.h"
 #include "nvs_flash.h"
 #include "lwip/err.h"
 #include "lwip/sys.h"
 #include "lwip/netdb.h"
 #include "lwip/sockets.h"
-#include "tcp_server.h"
+#include "esp_netif.h"
 
+#define WIFI_SSID "SSID"
+#define WIFI_PASS "PASSWORD"
 
 static const char *TAG = "esp32_server";
 
-void wifi_init_sta() {
+static void wifi_init_sta() {
+    esp_netif_config_t netif_config = ESP_NETIF_DEFAULT_WIFI_STA();
+    esp_netif_t *sta_netif = esp_netif_new(&netif_config);
+
     wifi_init_config_t cfg = WIFI_INIT_CONFIG_DEFAULT();
     esp_wifi_init(&cfg);
 
-    esp_wifi_set_mode(WIFI_MODE_STA);
     wifi_config_t sta_config = {
         .sta = {
             .ssid = WIFI_SSID,
@@ -49,6 +50,10 @@ void start_server() {
     bind(listen_sock, (struct sockaddr*)&server_addr, sizeof(server_addr));
     listen(listen_sock, 5);
 
+    esp_netif_ip_info_t ip_info;
+    esp_netif_get_ip_info(esp_netif_get_handle_from_ifkey("WIFI_STA_DEF"), &ip_info);
+    ESP_LOGI(TAG, "Server IP Address: %s", ip4addr_ntoa(&ip_info.ip));
+
     while (1) {
         struct sockaddr_in client_addr;
         socklen_t client_addr_len = sizeof(client_addr);
@@ -64,3 +69,15 @@ void start_server() {
         close(client_sock);
     }
 }
+
+void app_main() {
+    ESP_ERROR_CHECK(nvs_flash_init());
+    esp_netif_init();
+    esp_event_loop_create_default();
+
+    wifi_init_sta();
+    start_server();
+}
+
+
+

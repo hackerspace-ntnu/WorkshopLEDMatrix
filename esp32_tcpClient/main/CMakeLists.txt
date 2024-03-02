@@ -1,2 +1,2 @@
-idf_component_register(SRCS "app_main.c" "tcp_server.c"
+idf_component_register(SRCS "esp32_client.c"
                         INCLUDE_DIRS ".")
