@@ -12,9 +12,9 @@ endif()
 
 # the SPI backend driver relies on something that was added in IDF 5.1
 if("${IDF_VERSION_MAJOR}.${IDF_VERSION_MINOR}" VERSION_GREATER_EQUAL "5.1")
-    if(CONFIG_SOC_GPSPI_SUPPORTED)
+    # if(CONFIG_SOC_GPSPI_SUPPORTED) # remove check because the env. variable is not set, but works anyway :)
         list(APPEND srcs "src/led_strip_spi_dev.c")
-    endif()
+    # endif()
 endif()
 
 idf_component_register(SRCS ${srcs}
