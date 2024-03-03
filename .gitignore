@@ -69,3 +69,7 @@ platformio.ini
 **/build/
 **/sdkconfig.old
 **/sdkconfig
+
+# Python
+**/__pycache__
+pyenv/
