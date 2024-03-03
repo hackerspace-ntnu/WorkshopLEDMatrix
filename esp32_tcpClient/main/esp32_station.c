@@ -21,7 +21,6 @@
 #include <stdio.h>
 #include "freertos/semphr.h"
 #include "freertos/queue.h"
-#include "freertos/semphr.h"
 #include "freertos/timers.h"
 #include "lwip/netdb.h"
 #include "lwip/sockets.h"
