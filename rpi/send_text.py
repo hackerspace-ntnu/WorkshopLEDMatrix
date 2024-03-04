@@ -2,7 +2,7 @@ import socket
 import sys
 
 def send_to_esp32(text):
-    host = "192.168.1.217"
+    host = "ESP_IP_ADDRESS"
     port = 3333
 
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
