@@ -4,7 +4,7 @@
 #include "esp_log.h"
 #include "esp_err.h"
 #include "tcp_server.h"
-#include "config.h"
+#include "tcp_client.h"
 
 
 static const char *TAG = "LED Matrix";
@@ -13,14 +13,14 @@ static const char *TAG = "LED Matrix";
 led_strip_handle_t configure_led(void) {
 
     led_strip_config_t strip_config = {
-        .strip_gpio_num = LED_STRIP_BLINK_GPIO,
-        .max_leds = LED_STRIP_LED_NUMBERS,        
+        .strip_gpio_num = CONFIG_ESP_LED_STRIP_GPIO,
+        .max_leds = CONFIG_ESP_LED_STRIP_LED_NUMBER,        
         .led_pixel_format = LED_PIXEL_FORMAT_GRB, 
         .led_model = LED_MODEL_WS2812,           
         .flags.invert_out = false,                
     };
 
-    #if USE_SPI
+    #if CONFIG_ESP_USE_SPI
         led_strip_spi_config_t spi_config = {
             .clk_src = SOC_MOD_CLK_APB, // different clock source can lead to different power consumption, 
                                         // from clk_tree_defs SPI_CLK_SRC_DEFAULT is set to SOC_MOD_CLK_APB 
@@ -39,7 +39,7 @@ led_strip_handle_t configure_led(void) {
                     .rmt_channel = 0,
             #else
                 .clk_src = RMT_CLK_SRC_DEFAULT,        // different clock source can lead to different power consumption
-                .resolution_hz = LED_STRIP_RMT_RES_HZ, // RMT counter clock frequency
+                .resolution_hz = CONFIG_ESP_LED_STRIP_RMT_RES_HZ, // RMT counter clock frequency
                 .flags.with_dma = false,               // DMA feature is available on ESP target like ESP32-S3
             #endif
         };
@@ -53,14 +53,9 @@ led_strip_handle_t configure_led(void) {
 }
 
 void app_main(void)  {
-    // Code for TCP server
-    
-    ESP_ERROR_CHECK(nvs_flash_init());
-    esp_netif_init();
-    esp_event_loop_create_default();
 
-    wifi_init_sta();
     start_server();
+    start_client();
     
 
     // led_strip_handle_t led_strip = configure_led();
