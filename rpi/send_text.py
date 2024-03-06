@@ -9,6 +9,8 @@ def send_to_esp32(text):
         s.connect((host, port))
         s.sendall(str.encode(text))
         print(f"Sent {text} to LED matrix")
+        response = s.recv(1024)
+        print(f"Received {str.decode(response)} back from LED matrix")
 
 if __name__ == "__main__":
     # example usage: python3 send_text.py "GRATIS KAFFE"
