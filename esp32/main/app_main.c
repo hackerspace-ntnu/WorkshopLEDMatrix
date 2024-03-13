@@ -64,12 +64,12 @@ void app_main(void)  {
     // ESP_LOGI(TAG, "Start blinking LED strip");
     // while (1) {
     //     if (led_on_off) {
-    //         uint8_t pattern[LED_STRIP_LED_NUMBERS] = {
-    //             1,0,0,0,1,0,0,1,0,0,0,1,1,1,1,1,1,0,0,1,0,0,0,1,0,1,1,1,0 // letter A in 5x5 matrix
-    //         };
+    //         // uint8_t pattern[CONFIG_ESP_LED_STRIP_LED_NUMBER] = {
+    //         //     0,1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,1,
+    //         // };
     //         // Map the pattern to the LED strip
-    //         for (int i = 0; i < LED_STRIP_LED_NUMBERS; i++) {
-    //             ESP_ERROR_CHECK(led_strip_set_pixel(led_strip, i, (pattern[i]) ? 255 : 0, (pattern[i]) ? 255 : 0, (pattern[i]) ? 255 : 0));
+    //         for (int i = 0; i < CONFIG_ESP_LED_STRIP_LED_NUMBER; i++) {
+    //             ESP_ERROR_CHECK(led_strip_set_pixel(led_strip, i, 255 : 0, pattern[i] ? 255 : 0, pattern[i] ? 255 : 0));
     //         }
 
     //         /* Refresh the strip to send data */
