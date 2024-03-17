@@ -14,4 +14,4 @@ def send_to_esp32(text):
 
 if __name__ == "__main__":
     # example usage: python3 send_text.py "GRATIS KAFFE"
-   send_to_esp32(sys.argv[1]) # sys.argv[1] is now GRATIS KAFFE
+    send_to_esp32(sys.argv[1]) # sys.argv[1] is now GRATIS KAFFE
