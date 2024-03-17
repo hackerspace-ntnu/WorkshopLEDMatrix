@@ -5,22 +5,22 @@
 #include "esp_err.h"
 #include "tcp_server.h"
 #include "tcp_client.h"
+#include "led_matrix_config.h"
 
 
 static const char *TAG = "LED Matrix";
 
-
 led_strip_handle_t configure_led(void) {
 
     led_strip_config_t strip_config = {
-        .strip_gpio_num = CONFIG_ESP_LED_STRIP_GPIO,
-        .max_leds = CONFIG_ESP_LED_STRIP_LED_NUMBER,        
+        .strip_gpio_num = LED_STRIP_GPIO,
+        .max_leds = LED_STRIP_LED_NUMBER,        
         .led_pixel_format = LED_PIXEL_FORMAT_GRB, 
         .led_model = LED_MODEL_WS2812,           
         .flags.invert_out = false,                
     };
 
-    #if CONFIG_ESP_USE_SPI
+    #if LED_STRIP_USE_SPI
         led_strip_spi_config_t spi_config = {
             .clk_src = SOC_MOD_CLK_APB, // different clock source can lead to different power consumption, 
                                         // from clk_tree_defs SPI_CLK_SRC_DEFAULT is set to SOC_MOD_CLK_APB 

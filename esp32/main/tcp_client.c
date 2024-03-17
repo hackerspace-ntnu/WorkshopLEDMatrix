@@ -20,18 +20,11 @@
 #include "lwip/sockets.h"
 #include "lwip/sys.h"
 #include <lwip/netdb.h>
+#include "led_matrix_config.h"           
 
-
-#define HOST_IP_ADDR                CONFIG_WIFI_IPV4_ADDR
-#define PORT                        CONFIG_WIFI_IPV4_PORT
-#define WIFI_SSID                   CONFIG_ESP_WIFI_SSID
-#define WIFI_PASSWORD               CONFIG_ESP_WIFI_PASSWORD
-#define ESP_MAXIMUM_RETRY           CONFIG_ESP_MAXIMUM_RETRY
-#define WIFI_CONNECTED_BIT          BIT0
-#define WIFI_FAIL_BIT               BIT1
 
 static const char *TAG = "TCP_CLIENT";
-static const char *payload = "hell from client";
+static const char *payload = "hello from client";
 static EventGroupHandle_t s_wifi_event_group;
 
 void wifi_init_sta() {
@@ -102,7 +95,7 @@ void wifi_init_sta() {
 
 void tcp_client(void) {
     char rx_buffer[128];
-    char host_ip[] = HOST_IP_ADDR;
+    char host_ip[] = WIFI_IPV4_ADDR;
     int addr_family = 0;
     int ip_protocol = 0;
 
@@ -111,7 +104,7 @@ void tcp_client(void) {
         struct sockaddr_in dest_addr;
         inet_pton(AF_INET, host_ip, &dest_addr.sin_addr);
         dest_addr.sin_family = AF_INET;
-        dest_addr.sin_port = htons(PORT);
+        dest_addr.sin_port = htons(WIFI_IPV4_PORT);
         addr_family = AF_INET;
         ip_protocol = IPPROTO_IP;
 
@@ -120,7 +113,7 @@ void tcp_client(void) {
             ESP_LOGE(TAG, "Unable to create socket: errno %d", errno);
             break;
         }
-        ESP_LOGI(TAG, "Socket created, connecting to %s:%d", host_ip, PORT);
+        ESP_LOGI(TAG, "Socket created, connecting to %s:%d", host_ip, WIFI_IPV4_PORT);
 
         int err = connect(sock, (struct sockaddr *)&dest_addr, sizeof(dest_addr));
         if (err != 0) {

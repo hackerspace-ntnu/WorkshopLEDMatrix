@@ -15,17 +15,8 @@
 #include "lwip/sys.h"
 #include <lwip/netdb.h>
 #include "tcp_server.h"
+#include "led_matrix_config.h"
 
-
-#define PORT                        CONFIG_WIFI_IPV4_PORT
-#define KEEPALIVE_IDLE              CONFIG_TCP_KEEPALIVE_IDLE
-#define KEEPALIVE_INTERVAL          CONFIG_TCP_KEEPALIVE_INTERVAL
-#define KEEPALIVE_COUNT             CONFIG_TCP_KEEPALIVE_COUNT
-#define WIFI_SSID                   CONFIG_ESP_WIFI_SSID
-#define WIFI_PASSWORD               CONFIG_ESP_WIFI_PASSWORD
-#define ESP_MAXIMUM_RETRY           CONFIG_ESP_MAXIMUM_RETRY
-#define WIFI_CONNECTED_BIT          BIT0
-#define WIFI_FAIL_BIT               BIT1
 
 static const char *TAG = "TCP_SERVER";
 
@@ -68,7 +59,7 @@ static void event_handler(void* arg, esp_event_base_t event_base,
     if (event_base == WIFI_EVENT && event_id == WIFI_EVENT_STA_START) {
         esp_wifi_connect();
     } else if (event_base == WIFI_EVENT && event_id == WIFI_EVENT_STA_DISCONNECTED) {
-        if (s_retry_num < ESP_MAXIMUM_RETRY) {
+        if (s_retry_num < WIFI_MAXIMUM_RETRY) {
             esp_wifi_connect();
             s_retry_num++;
             ESP_LOGI(TAG, "retry to connect to the AP");
@@ -154,9 +145,9 @@ static void tcp_server_task(void *pvParameters) {
     int addr_family = (int)pvParameters;
     int ip_protocol = 0;
     int keepAlive = 1;
-    int keepIdle = KEEPALIVE_IDLE;
-    int keepInterval = KEEPALIVE_INTERVAL;
-    int keepCount = KEEPALIVE_COUNT;
+    int keepIdle = TCP_KEEPALIVE_IDLE;
+    int keepInterval = TCP_KEEPALIVE_INTERVAL;
+    int keepCount = TCP_KEEPALIVE_COUNT;
     struct sockaddr_storage dest_addr;
 
 
@@ -164,7 +155,7 @@ static void tcp_server_task(void *pvParameters) {
         struct sockaddr_in *dest_addr_ip4 = (struct sockaddr_in *)&dest_addr;
         dest_addr_ip4->sin_addr.s_addr = htonl(INADDR_ANY);
         dest_addr_ip4->sin_family = AF_INET;
-        dest_addr_ip4->sin_port = htons(PORT);
+        dest_addr_ip4->sin_port = htons(WIFI_IPV4_PORT);
         ip_protocol = IPPROTO_IP;
     }
 
@@ -185,7 +176,7 @@ static void tcp_server_task(void *pvParameters) {
         ESP_LOGE(TAG, "IPPROTO: %d", addr_family);
         goto CLEAN_UP;
     }
-    ESP_LOGI(TAG, "Socket bound, port %d", PORT);
+    ESP_LOGI(TAG, "Socket bound, port %d", WIFI_IPV4_PORT);
 
     err = listen(listen_sock, 1);
     if (err != 0) {
