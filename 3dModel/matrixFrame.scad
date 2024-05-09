@@ -1,5 +1,5 @@
-width = 8;
-height = 8;
+width = 10;
+height = 13;
 pixelSize = 16.6;
 baseThickness = 1.0;
 wallThickness = 0.8;
@@ -10,7 +10,7 @@ ledCutoutHeight = 9;
 ledBendspace = 4;
 
 module pixelCell(){
-    // base plate, moved to seperate file
+    // base plate
    translate([-wallThickness/2, -wallThickness/2,0])
    cube([pixelSize+wallThickness, pixelSize+wallThickness, baseThickness]);
     
