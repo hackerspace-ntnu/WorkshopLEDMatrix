@@ -1,10 +1,6 @@
 #ifndef LED_MATRIX_CONFIG_H
 #define LED_MATRIX_CONFIG_H
 
-#define LED_STRIP_USE_SPI 1
-#define LED_STRIP_USE_RMT 0 
-#define LED_STRIP_GPIO 13 
-#define LED_STRIP_LED_NUMBER 40
 #define LED_STRIP_RMT_RES_HZ 10000000 // 10MHz resolution, 1 tick = 0.1us (led strip needs a high resolution)
 #define WIFI_SSID "myssid"
 #define WIFI_PASSWORD "mypassword"
