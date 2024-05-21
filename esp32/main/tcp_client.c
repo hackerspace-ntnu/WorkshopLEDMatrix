@@ -95,7 +95,7 @@ void wifi_init_sta() {
 
 void tcp_client(void) {
     char rx_buffer[128];
-    char host_ip[] = WIFI_IPV4_ADDR;
+    char host_ip[] = "000.000.0.000"; 
     int addr_family = 0;
     int ip_protocol = 0;
 

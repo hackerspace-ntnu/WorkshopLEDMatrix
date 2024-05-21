@@ -59,7 +59,7 @@ static void event_handler(void* arg, esp_event_base_t event_base,
     if (event_base == WIFI_EVENT && event_id == WIFI_EVENT_STA_START) {
         esp_wifi_connect();
     } else if (event_base == WIFI_EVENT && event_id == WIFI_EVENT_STA_DISCONNECTED) {
-        if (s_retry_num < WIFI_MAXIMUM_RETRY) {
+        if (s_retry_num < 5) { // avoid station reconnecting to the AP unlimited times when the AP is inexistent
             esp_wifi_connect();
             s_retry_num++;
             ESP_LOGI(TAG, "retry to connect to the AP");
@@ -145,9 +145,9 @@ static void tcp_server_task(void *pvParameters) {
     int addr_family = (int)pvParameters;
     int ip_protocol = 0;
     int keepAlive = 1;
-    int keepIdle = TCP_KEEPALIVE_IDLE;
-    int keepInterval = TCP_KEEPALIVE_INTERVAL;
-    int keepCount = TCP_KEEPALIVE_COUNT;
+    int keepIdle = 5; // Keep-alive idle time. In idle time without receiving any data from peer, will send keep-alive probe packet
+    int keepInterval = 5; // Keep-alive probe packet interval time
+    int keepCount = 3; // Keep-alive probe packet retry count.
     struct sockaddr_storage dest_addr;
 
 

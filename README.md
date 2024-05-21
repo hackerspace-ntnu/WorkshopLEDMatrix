@@ -5,7 +5,7 @@ The goal of this project is to make a LED matrix/sign for displaying messages in
 
 
 ### Implementation:
-The ESP32 will be responsible for sending data to the LED matrix using RMT or SPI depending on which one works best with many LEDs. It will also act as a TCP-server and receive the text you want to display in the window from the RPi. Connect to the RPi via ssh and run *insert file name here* with the text. 
+The ESP32 will be responsible for sending data to the LED matrix using RMT or SPI depending on which one works best with many LEDs. It will also act as a TCP-server and receive the text you want to display in the window from the RPi. Connect to the RPi via ssh and run `python3 send_text.py "xxx"` to display "xxx" on the LED Matrix. 
 
 
 ## Dimensions 
@@ -13,7 +13,7 @@ The plan is to make it 12 LEDs in height and about 100 LEDs in length, which rou
 
 
 ## Code 
-Python running on the RPi and C code using the Espress-if build system on the ESP32.
+Python running on the RPi and C using the Espress-if build system on the ESP32.
 
 
 ## TODO
